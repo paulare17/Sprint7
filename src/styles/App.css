@@ -1,0 +1,33 @@
+
+/* navbar */
+.navbar {
+  display: flex;
+  align-items: center;
+  background-color: #0d253f;
+  padding: 10px 20px;
+  width: 100%;
+  justify-content: space-around !important;
+  position: fixed;
+}
+
+.navbar-brand {
+  width: 150px;
+  margin: 20px;
+}
+
+.nav-link {
+  color: white !important;
+  font-weight: bold !important;
+}
+
+.element {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem;
+  gap: 2rem;
+
+}
+.element > img {
+  width: 300px;
+}
