@@ -1,4 +1,3 @@
-//redux
 import { useGetDadesQuery} from '../../features/apiSlice'
 import type { Film } from '../../features/apiSlice'
 
@@ -20,4 +19,3 @@ export default function List() {
     </div>
   )
 }
-
