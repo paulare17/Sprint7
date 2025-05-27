@@ -9,8 +9,8 @@ const baseUrl: string = `https://api.themoviedb.org/3/`
 export interface Film {
   id: number;
   poster_path: string;
+  original_title: string;
 }
-
 
 
 //interface dels elements de la API
@@ -24,14 +24,16 @@ export interface MovieResponse {
 // Defineix el servei de l'API
 export const apiSlice = createApi({
   reducerPath: 'api', // Nom de l'espai al store
-  baseQuery: fetchBaseQuery({ baseUrl}), // Canvia l'URL per la teva API
+  baseQuery: fetchBaseQuery({ baseUrl}), 
   endpoints: (builder) => ({
-    // Exemple d'una consulta (GET)
-    getDades: builder.query<Film[], void>({
-      query: () => `movie/popular?api_key=${apiKey}&page=${page}`, // Endpoint de l'API
+    getDades: builder.query<MovieResponse, void>({
+      query: () => `movie/popular?api_key=${apiKey}&page=${page}`, //API
     }),
+    getFilmById: builder.query<Film, number>({
+      query: (id) => `movie/${id}?api_key=${apiKey}`,
+    })
   }),
 });
 
 // Exporta els hooks generats automàticament
-export const { useGetDadesQuery } = apiSlice;
+export const { useGetDadesQuery, useGetFilmByIdQuery } = apiSlice;

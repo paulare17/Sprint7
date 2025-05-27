@@ -20,14 +20,14 @@
   font-weight: bold !important;
 }
 
-.element {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 2rem;
-  gap: 2rem;
-
+.poster {
+  margin-top: 50px !important;
 }
-.element > img {
-  width: 300px;
+
+.poster img {
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+}
+.poster img:hover {
+  transform: scale(0.95);
 }
