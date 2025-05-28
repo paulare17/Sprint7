@@ -2,14 +2,25 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 // import Film from "../components/List/List"
 
 const apiKey: string = "38aec9dcc915b82585b7be878fba2d4b";
-const page: number = 1;
+// const page: number = 1;
+const language: string = "&language=ca"
 const baseUrl: string = `https://api.themoviedb.org/3/`
+
+
+//scroll infinit
+
+
 
 //interface de la pel·lícula concreta 
 export interface Film {
   id: number;
   poster_path: string;
+  title: string;
   original_title: string;
+  overview: string;
+  name: string;
+  profile_path: string;
+  release_date: string;
 }
 
 
@@ -21,19 +32,24 @@ export interface MovieResponse {
   total_results: number;
 }
 
+
 // Defineix el servei de l'API
 export const apiSlice = createApi({
   reducerPath: 'api', // Nom de l'espai al store
   baseQuery: fetchBaseQuery({ baseUrl}), 
   endpoints: (builder) => ({
-    getDades: builder.query<MovieResponse, void>({
-      query: () => `movie/popular?api_key=${apiKey}&page=${page}`, //API
+    //construcció "dels links"
+    getDades: builder.query<MovieResponse, number>({
+      query: (page = 1) => `movie/popular?api_key=${apiKey}&page=${page}${language}`, //llista pelicules
     }),
     getFilmById: builder.query<Film, number>({
-      query: (id) => `movie/${id}?api_key=${apiKey}`,
+      query: (id) => `movie/${id}?api_key=${apiKey}${language}`, //pelis individuals
+    }),
+    getCastById: builder.query<Film, string>({
+      query: (id) => `movie/${id}/credits?api_key=${apiKey}${language}`,
     })
   }),
 });
 
 // Exporta els hooks generats automàticament
-export const { useGetDadesQuery, useGetFilmByIdQuery } = apiSlice;
+export const { useGetDadesQuery, useGetFilmByIdQuery, useGetCastByIdQuery } = apiSlice;

@@ -5,8 +5,22 @@ import ImageListItem from '@mui/material/ImageListItem';
 import { useGetDadesQuery } from '../../features/apiSlice';
 import type { Film } from '../../features/apiSlice';
 
+
+
 export default function List() {
-  const { data, isLoading, isError } = useGetDadesQuery()
+  const [page, setPage] = React.useState(1)
+  const [movies, setMovies] = React.useState<Film[]>([])
+  const { data, isLoading, isError } = useGetDadesQuery(page)
+
+  React.useEffect(() => {
+    if (data && data.results) {
+      setMovies((prev) => [...prev, ...data.results]);
+    }
+  }, [data]);
+
+  const handleScroll = () => setPage((p) => p + 1)
+  
+
 
   if (isLoading) return <p>Carregant...</p>
   if (isError) return <p>Error en carregar la llista de pel·lícules</p>
@@ -15,11 +29,12 @@ export default function List() {
   console.log(data.results)
 
   return (
-
-     <ImageList className="poster" sx={{ width: '90vw', height: 'auto', margin: '0 auto' }} cols={5} gap={30}>
-      {data.results.map((movie: Film) => (
+<>
+     <ImageList className="image" sx={{ width: '90vw', height: 'auto', margin: '0 auto' }} cols={5} gap={30}>
+      {movies.map((movie: Film) => (
         <ImageListItem key={movie.id} className='poster-item'>
           <Link to={`/movie/${movie.id}`}>
+          {movie.poster_path ? (
           <img
             // className='poster-img'
             srcSet={`https://image.tmdb.org/t/p/w200${movie.poster_path} 1x, https://image.tmdb.org/t/p/w400${movie.poster_path} 2x`}
@@ -27,9 +42,16 @@ export default function List() {
             alt={movie.original_title || 'Poster de pel·lícula'}
             loading="lazy"
             />
+          ) : (
+            <div>
+              {movie.title}
+            </div>
+          )}
             </Link>
         </ImageListItem>
       ))}
     </ImageList>
+    <button onClick={handleScroll} disabled={isLoading}> {isLoading ? 'Carregant' : "View more"}</button>
+      </>
   );
 }
