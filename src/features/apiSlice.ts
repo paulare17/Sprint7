@@ -3,11 +3,10 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const apiKey: string = "38aec9dcc915b82585b7be878fba2d4b";
 // const page: number = 1;
-const language: string = "&language=ca"
+// const language: string = "&language=ca"
 const baseUrl: string = `https://api.themoviedb.org/3/`
 
 
-//scroll infinit
 
 
 
@@ -40,13 +39,13 @@ export const apiSlice = createApi({
   endpoints: (builder) => ({
     //construcció "dels links"
     getDades: builder.query<MovieResponse, number>({
-      query: (page = 1) => `movie/popular?api_key=${apiKey}&page=${page}${language}`, //llista pelicules
+      query: (page = 1) => `movie/popular?api_key=${apiKey}&page=${page}`, //llista pelicules
     }),
     getFilmById: builder.query<Film, number>({
-      query: (id) => `movie/${id}?api_key=${apiKey}${language}`, //pelis individuals
+      query: (id) => `movie/${id}?api_key=${apiKey}`, //pelis individuals
     }),
     getCastById: builder.query<Film, string>({
-      query: (id) => `movie/${id}/credits?api_key=${apiKey}${language}`,
+      query: (id) => `movie/${id}/credits?api_key=${apiKey}`,
     })
   }),
 });

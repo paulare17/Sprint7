@@ -18,7 +18,9 @@ export default function List() {
     }
   }, [data]);
 
-  const handleScroll = () => setPage((p) => p + 1)
+
+
+  const handleViewMore = () => setPage((p) => p + 1)
   
 
 
@@ -51,7 +53,10 @@ export default function List() {
         </ImageListItem>
       ))}
     </ImageList>
-    <button onClick={handleScroll} disabled={isLoading}> {isLoading ? 'Carregant' : "View more"}</button>
+    <div className='view-more-container'>
+
+    <button className='view-more' onClick={handleViewMore} disabled={isLoading}> {isLoading ? 'Carregant' : "View more"}</button>
+    </div>
       </>
   );
 }

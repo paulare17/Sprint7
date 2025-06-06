@@ -41,6 +41,7 @@ const FilmDetail = () => {
   if (isLoading) return <p>Carregant...</p>;
   if (isError || !movie) return <p>No s'ha trobat la pel·lícula</p>;
 
+
   return (
     <div className="pg">
         <section className="info-film">
