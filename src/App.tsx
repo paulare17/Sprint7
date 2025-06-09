@@ -24,13 +24,12 @@ function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
-         <Navbar />
-         <button 
-          className={`scary-mode-button ${isScaryMode ? 'active' : ''}`}
-          onClick={() => setIsScaryMode(prev => !prev)}
-          >
-          {isScaryMode ? "😱 Normal Mode" : "🎃 Scary Mode"}
-        </button>
+         <Navbar 
+         isScaryMode={isScaryMode} 
+          onToggleScaryMode={() => setIsScaryMode(prev => !prev)} 
+         
+         />
+      
         <Routes>
          <Route
             path="/"

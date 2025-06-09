@@ -4,29 +4,39 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../../auth/AuthContext";
 import ProfileMenu from "./ProfileMenu";
 
-const Navbar: React.FC = () => {
-  const {user } = useAuth();
+type NavbarProps = {
+  isScaryMode: boolean;
+  onToggleScaryMode: () => void;
+};
 
-  console.log("prova", logo);
+
+const Navbar: React.FC<NavbarProps> = ({ isScaryMode, onToggleScaryMode }) => {
+  const { user } = useAuth();
+
   return (
-    <nav className="navbar">
-        <Link to="/">
+ <nav className="navbar">
+      <Link to="/" className="navbar-brand">
+        <img src={logo} alt="TMDB Logo" />
+      </Link>
+
+      <div className="navbar-controls">
+        {user && (
+          <button 
+            className={`scary-mode-button ${isScaryMode ? 'active' : ''}`}
+            onClick={onToggleScaryMode}
+          >
+            {isScaryMode ? "😱 Normal Mode" : "🎃 Scary Mode"}
+          </button>
+        )}
         
-      <img className="navbar-brand" src={logo} alt="green logo from TMDB"  />
-        </Link>
-      <ul className="navbar-nav">
-        <li className="nav-item">
-           
-          {user ? (
-            <ProfileMenu/>
-          ) : (
-            <Link to="/login" className="nav-link">
-              Inicieu la sessió
-            </Link>
-            )
-          }
-        </li>
-      </ul>
+        {user ? (
+          <ProfileMenu />
+        ) : (
+          <Link to="/login" className="nav-link">
+            Iniciar sessió
+          </Link>
+        )}
+      </div>
     </nav>
   );
 };
