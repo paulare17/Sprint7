@@ -1,54 +1,45 @@
-# React + TypeScript + Vite
+# 🎬 MovieApp
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicació web desenvolupada amb **React**, **TypeScript**, **Firebase** i **React Router**, que utilitza l'API de **TMDB**.
 
-Currently, two official plugins are available:
+## 🧩 Funcionalitats
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Registre i login d'usuari (Firebase Auth)
+- Guardar pel·lícules com a preferides
+- Filtre especial "Scary Mode" per veure només pel·lícules de por
+- Vista detallada de pel·lícules amb els seus actors únicament amb autenticació d'usuari
+- Vista de cada actor amb totes les pel·lícules on ha participat
 
-## Expanding the ESLint configuration
+## 🛠️ Tecnologies
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- React
+- TypeScript
+- Firebase (auth + firestore)
+- React Router
+- TMDB API
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## ⚙️ Requisits
+
+- Node.js (versió LTS recomanada)
+- npm o yarn
+- Clau d'API de [TMDB](https://www.themoviedb.org/)
+
+## 🚀 Instal·lació
+
+1. Clona el repositori:
+
+```bash
+git clone https://github.com/usuari/nom-del-repositori.git
+cd nom-del-repositori
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. Instal·la les dependències:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+npm install
+```
+3. Inicia el servidor de desenvolupament:
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+```bash
+npm run dev
 ```
