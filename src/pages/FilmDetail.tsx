@@ -1,6 +1,5 @@
 import { useParams, Link } from "react-router-dom";
 import { useGetFilmByIdQuery, useGetCastByIdQuery } from "../features/apiSlice";
-import type { Film } from "../features/apiSlice";
 import List from "../components/List/List";
 import { useAuth } from "../auth/AuthContext";
 import { db } from "../libraries/firebase";

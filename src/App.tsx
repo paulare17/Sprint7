@@ -10,9 +10,9 @@ import ProtectedRute from "./auth/ProtectedRute.tsx";
 import ActorDetail from "./pages/ActorDetail";
 import FavoritePage from "./pages/FavoritePage";
 
-function App() {
+const App: React.FC = () => {
+  const [isScaryMode, setIsScaryMode] = useState<boolean>(false);
 
-   const [isScaryMode, setIsScaryMode] = useState(false);
   useEffect(() => {
     if (isScaryMode) {
       document.body.classList.add('scary-mode');

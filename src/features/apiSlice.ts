@@ -53,29 +53,29 @@ export interface CastResponse {
 // Defineix el servei de l'API
 export const apiSlice = createApi({
   reducerPath: 'api', 
-  baseQuery: fetchBaseQuery({ baseUrl}), 
+  baseQuery: fetchBaseQuery({ baseUrl }), 
   endpoints: (builder) => ({
-    //construcció "dels links"
-    getDades: builder.query<MovieResponse, number>({
-      query: (page = 1) => `movie/popular?api_key=${apiKey}&page=${page}`, //llista pelicules
+    getDades: builder.query<MovieResponse, { page: number }>({
+      query: ({page = 1}) => `movie/popular?api_key=${apiKey}&page=${page}`,
     }),
     getFilmById: builder.query<Film, number>({
-      query: (id) => `movie/${id}?api_key=${apiKey}`, //pelis individuals
+      query: (id) => `movie/${id}?api_key=${apiKey}`,
     }),
-    getCastById: builder.query<Film, string>({
-      query: (id) => `movie/${id}/credits?api_key=${apiKey}`, //actors que participen de la peli
+    getCastById: builder.query<CastResponse, string>({  // Changed from Film to CastResponse
+      query: (id) => `movie/${id}/credits?api_key=${apiKey}`,
     }),
-    getActorById: builder.query<Actor, string>({ //actor individual
+    getActorById: builder.query<Actor, string>({
       query: (id) => `person/${id}?api_key=${apiKey}`,
     }),
-    getActorMovies: builder.query<MovieResponse, string>({
-      query: (id) => `person/${id}/movie_credits?api_key=${apiKey}`, 
+    getActorMovies: builder.query<CastResponse, string>({  // Changed from MovieResponse to CastResponse
+      query: (id) => `person/${id}/movie_credits?api_key=${apiKey}`,
     }),
     getMoviesByGenre: builder.query<MovieResponse, {page: number}>({
-      query: (page = 1) => 
+      query: ({page = 1}) => 
         `discover/movie?api_key=${apiKey}&with_genres=27,53&page=${page}&sort_by=popularity.desc`,
     }),
-})})
+  })
+})
 
 // Exporta els hooks generats automàticament
 export const {

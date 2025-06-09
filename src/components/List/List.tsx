@@ -12,7 +12,6 @@ type ListProps = {
   linkPrefix?: string;
   isActor?: boolean;
   isScaryMode?: boolean;
-  // variant?: 'main' | 'detail' | 'actor'; 
 }
 
 
@@ -23,28 +22,17 @@ export default function List({
   linkPrefix = '/movie',
   isActor = false,
   isScaryMode = false,
-  // variant = 'main',
+
 
 }: ListProps) {
   const [page, setPage] = React.useState(1)
   const [movies, setMovies] = React.useState<Film[]>([])
-  // const { data, isLoading, isError } = useGetDadesQuery(page)
 
-  const { 
-    data: normalData, 
-    isLoading: normalLoading, 
-    isError: normalError 
-  } = useGetDadesQuery(page, {
-    skip: isScaryMode
-  });
-  
-  const { 
-    data: scaryData, 
-    isLoading: scaryLoading, 
-    isError: scaryError 
-  } = useGetMoviesByGenreQuery(page, {
-    skip: !isScaryMode
-  });
+const { data: normalData, isLoading: normalLoading, isError: normalError } = 
+  useGetDadesQuery({ page }, { skip: isScaryMode });
+
+const { data: scaryData, isLoading: scaryLoading, isError: scaryError } = 
+  useGetMoviesByGenreQuery({ page }, { skip: !isScaryMode });
 
   const currentData = isScaryMode ? scaryData : normalData;
   const isLoading = isScaryMode ? scaryLoading : normalLoading;

@@ -2,15 +2,15 @@ import React from 'react';
 import { Avatar, IconButton, Menu, MenuItem, Tooltip } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { getAuth, signOut } from 'firebase/auth';
-import { deepPurple } from '@mui/material/colors';
+
 
 export default function ProfileMenu() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
   const open = Boolean(anchorEl);
   const navigate = useNavigate();
   const auth = getAuth();
 
-  const handleClick = (event) => {
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
 

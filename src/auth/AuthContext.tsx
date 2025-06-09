@@ -1,7 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { getAuth, setPersistence, onAuthStateChanged, User, browserLocalPersistence } from 'firebase/auth';
-import { app } from '../libraries/firebase'; // assegura’t que tens firebase inicialitzat aquí
-import { auth } from '../libraries/firebase';
+
 
 type AuthContextType = {
   user: User | null;
