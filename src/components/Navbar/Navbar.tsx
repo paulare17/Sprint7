@@ -18,9 +18,9 @@ const Navbar: React.FC = () => {
         <li className="nav-item">
            
           {user ? (
-            <ProfileMenu />
+            <ProfileMenu/>
           ) : (
-            <Link to="/login">
+            <Link to="/login" className="nav-link">
               Inicieu la sessió
             </Link>
             )

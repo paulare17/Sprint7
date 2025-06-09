@@ -3,30 +3,54 @@ html {
 
 }
 
-
+body.scary-mode {
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
 
 /* navbar */
 .navbar {
-  font-family: 'Montserrat', sans-serif;
+font-family: 'Montserrat', sans-serif;
   display: flex;
   align-items: center;
   background-color: #0d253f;
   padding: 10px 20px;
   width: 100%;
-  justify-content: space-around !important;
+  justify-content: space-between;
   position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
 }
 
 .navbar-brand {
   width: 150px;
-  margin: 20px;
+  margin: 30px;
 }
 
 .nav-link {
   color: white !important;
-  font-weight: bold !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  margin-right: 10rem !important;
 }
 
+/*menú perfil*/
+
+.user-icon {
+    color: white !important;
+  margin-right: 3rem !important;
+}
+
+.user-avatar {
+  background-color: #01b4e4 !important;
+  transition: transform 0.2s ease !important;
+}
+
+.user-avatar:hover {
+  transform: scale(1.1);
+  background-color: #90cea1 !important;
+}
 /* pagina principal */
 
 .image {
@@ -62,7 +86,7 @@ background-color: blue;
 } */
 
 
-/* pagines internes */
+/* detall pelicules */
 .poster-detail {
   margin: 2rem;
   border-radius: 12px;
@@ -87,9 +111,10 @@ background-color: blue;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  height: 250px;
   width: 100%;  
   text-align: center;
+  color: black;
   border: 2px solid #000;
   border-radius: 12px;
 }
@@ -115,4 +140,62 @@ background-color: blue;
 }
 .view-more:hover {
   background-color: #90cea1;
+}
+
+.title-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+/*details character*/
+.character-name {
+  margin-top: 1rem;
+  padding: 0.5rem;
+  text-decoration: none !important;
+}
+
+.character-name p {
+   text-decoration: none !important;
+  color: #0d253f;
+  font-weight: 600;
+  margin: 0;
+  font-size: 1rem;
+}
+
+.character-name small {
+   text-decoration: none !important;
+  color: #666;
+  font-size: 0.9rem;
+  display: block;
+  margin-top: 0.3rem;
+}
+
+/*scary mode*/
+
+.scary-mode-button {
+  position: fixed;
+  top: 30px;
+  right: 125px;
+  padding: 10px 20px;
+  background-color: #ff4444;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.scary-mode-button:hover {
+  background-color: #cc0000;
+  transform: scale(1.05);
+}
+
+/* Estil quan està actiu el mode terror */
+.scary-mode-button.active {
+  background-color: #333;
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import { Avatar, IconButton, Menu, MenuItem, Tooltip } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { getAuth, signOut } from 'firebase/auth';
+import { deepPurple } from '@mui/material/colors';
 
 export default function ProfileMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -21,7 +22,7 @@ export default function ProfileMenu() {
     try {
     await signOut(auth);
     console.log('Logout correcte');
-    window.location.reload();
+    // window.location.reload();
     handleClose();
     navigate('/');
   } catch (error) {
@@ -32,8 +33,8 @@ export default function ProfileMenu() {
   return (
     <>
       <Tooltip title="Configuració del compte">
-        <IconButton onClick={handleClick} size="small" sx={{ ml: 2 }}>
-          <Avatar sx={{ width: 32, height: 32 }}>U</Avatar>
+        <IconButton onClick={handleClick} className='user-icon'>
+          <Avatar sx={{ width: 32, height: 32}} className='user-avatar'>U</Avatar>
         </IconButton>
       </Tooltip>
       <Menu
@@ -58,8 +59,7 @@ export default function ProfileMenu() {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem onClick={() => navigate('/perfil')}>Perfil</MenuItem>
-        <MenuItem>Preferits</MenuItem>
+        <MenuItem onClick={() => navigate('/favorites')}>Preferits</MenuItem>
         <MenuItem onClick={handleLogout}>Tancar sessió</MenuItem>
       </Menu>
     </>

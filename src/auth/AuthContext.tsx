@@ -1,29 +1,27 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import { getAuth, onAuthStateChanged, User } from 'firebase/auth';
+import { getAuth, setPersistence, onAuthStateChanged, User, browserLocalPersistence } from 'firebase/auth';
 import { app } from '../libraries/firebase'; // assegura’t que tens firebase inicialitzat aquí
+import { auth } from '../libraries/firebase';
 
 type AuthContextType = {
   user: User | null;
 };
 
 const AuthContext = createContext<AuthContextType>({ user: null });
+// const auth = getAuth(app);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    try {
-      const auth = getAuth(app);
+    const auth = getAuth();
+    setPersistence(auth, browserLocalPersistence)
+  
       const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
         setUser(firebaseUser);
-        if (firebaseUser) {
-          console.log('Autenticació correcta!');
-        }
       });
       return unsubscribe;
-    } catch (error) {
-      console.error('Error en la subscripció a l\'autenticació:', error);
-    }
+    
   }, []);
 
   return (
