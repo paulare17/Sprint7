@@ -38,7 +38,20 @@ cd nom-del-repositori
 ```bash
 npm install
 ```
-3. Inicia el servidor de desenvolupament:
+
+3. Revisa que a firebase.ts hi hagi aquestes credencials (imprescindibles per accedir a les dades de TMDB):
+```bash
+const firebaseConfig = {
+  apiKey: 'AIzaSyCrxYaWTVZizCoJAtnZAZYQceQH9oNAXDY',
+  authDomain: 'sprint7-580bb.firebaseapp.com',
+  projectId: 'sprint7-580bb',
+  storageBucket: 'sprint7-580bb.appspot.com',
+  messagingSenderId: '862284021863',
+  appId: '1:862284021863:web',
+};
+```
+
+4. Inicia el servidor de desenvolupament:
 
 ```bash
 npm run dev
