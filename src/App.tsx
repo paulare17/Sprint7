@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import "./styles/App.css";
+import "./styles/responsive.css";
 import Navbar from "./components/Navbar/Navbar";
 import List from "./components/List/List";
 import FilmDetail from "./pages/FilmDetail";
@@ -24,52 +25,53 @@ const App: React.FC = () => {
   return (
     <BrowserRouter>
       <AuthProvider>
-         <Navbar 
-         isScaryMode={isScaryMode} 
-          onToggleScaryMode={() => setIsScaryMode(prev => !prev)} 
-         
-         />
-      
-        <Routes>
-         <Route
-            path="/"
-            element={
-              <>
-                <List 
-                  cols={5} 
-                  imageSize="w400" 
-                  linkPrefix="/movie" 
-                  isScaryMode={isScaryMode}
-                />
-              </>
-            }
-            />
-          <Route
-            path="/movie/:id"
-            element={
-              <ProtectedRute>
-                <FilmDetail />
-              </ProtectedRute>
-            }
-            />
-          <Route
-            path="/person/:id"
-            element={
-              <ProtectedRute>
-                <ActorDetail />
-              </ProtectedRute>
-            }
-            />
-          <Route path="/login" element={<Login />} />
-          <Route
-            path="/favorites"
-            element={
-              <ProtectedRute>
-                <FavoritePage />
-              </ProtectedRute>
-            }
-            />
-        </Routes>
+        <div className="app-container">
+          <Navbar 
+            isScaryMode={isScaryMode} 
+            onToggleScaryMode={() => setIsScaryMode(prev => !prev)} 
+          />
+          
+          <main>
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <List 
+                    cols={5} 
+                    imageSize="w400" 
+                    linkPrefix="/movie" 
+                    isScaryMode={isScaryMode}
+                  />
+                }
+              />
+              <Route
+                path="/movie/:id"
+                element={
+                  <ProtectedRute>
+                    <FilmDetail />
+                  </ProtectedRute>
+                }
+              />
+              <Route
+                path="/person/:id"
+                element={
+                  <ProtectedRute>
+                    <ActorDetail />
+                  </ProtectedRute>
+                }
+              />
+              <Route path="/login" element={<Login />} />
+              <Route
+                path="/favorites"
+                element={
+                  <ProtectedRute>
+                    <FavoritePage />
+                  </ProtectedRute>
+                }
+              />
+            </Routes>
+          </main>
+        </div>
       </AuthProvider>
     </BrowserRouter>
   );
