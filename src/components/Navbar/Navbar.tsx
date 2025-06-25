@@ -37,7 +37,7 @@ const Navbar: React.FC<NavbarProps> = ({ isScaryMode, onToggleScaryMode }) => {
 
   // Desktop Navigation
   const DesktopNav = () => (
-    <nav className="navbar">
+ <nav className="navbar">
       <Link to="/" className="navbar-brand">
         <img src={logo} alt="TMDB Logo" />
       </Link>
@@ -48,12 +48,12 @@ const Navbar: React.FC<NavbarProps> = ({ isScaryMode, onToggleScaryMode }) => {
             <Link to="/favorites" className="nav-link">
               Preferits
             </Link>
-            <button 
-              className={`scary-mode-button ${isScaryMode ? 'active' : ''}`}
-              onClick={onToggleScaryMode}
-            >
+          <button 
+            className={`scary-mode-button ${isScaryMode ? 'active' : ''}`}
+            onClick={onToggleScaryMode}
+          >
               {isScaryMode ? "😱 Normal" : "🎃 Scary"}
-            </button>
+          </button>
             <ProfileMenu />
           </>
         )}

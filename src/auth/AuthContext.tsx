@@ -20,7 +20,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         setUser(firebaseUser);
       });
       return unsubscribe;
-    
   }, []);
 
   return (

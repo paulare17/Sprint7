@@ -26,50 +26,50 @@ const App: React.FC = () => {
     <BrowserRouter>
       <AuthProvider>
         <div className="app-container">
-          <Navbar 
-            isScaryMode={isScaryMode} 
-            onToggleScaryMode={() => setIsScaryMode(prev => !prev)} 
-          />
-          
+         <Navbar 
+         isScaryMode={isScaryMode} 
+          onToggleScaryMode={() => setIsScaryMode(prev => !prev)} 
+         />
+      
           <main>
-            <Routes>
-              <Route
-                path="/"
-                element={
-                  <List 
-                    cols={5} 
-                    imageSize="w400" 
-                    linkPrefix="/movie" 
-                    isScaryMode={isScaryMode}
-                  />
-                }
-              />
-              <Route
-                path="/movie/:id"
-                element={
-                  <ProtectedRute>
-                    <FilmDetail />
-                  </ProtectedRute>
-                }
-              />
-              <Route
-                path="/person/:id"
-                element={
-                  <ProtectedRute>
-                    <ActorDetail />
-                  </ProtectedRute>
-                }
-              />
-              <Route path="/login" element={<Login />} />
-              <Route
-                path="/favorites"
-                element={
-                  <ProtectedRute>
-                    <FavoritePage />
-                  </ProtectedRute>
-                }
-              />
-            </Routes>
+        <Routes>
+         <Route
+            path="/"
+            element={
+                <List 
+                  cols={5} 
+                  imageSize="w400" 
+                  linkPrefix="/movie" 
+                  isScaryMode={isScaryMode}
+                />
+            }
+            />
+          <Route
+            path="/movie/:id"
+            element={
+              <ProtectedRute>
+                <FilmDetail />
+              </ProtectedRute>
+            }
+            />
+          <Route
+            path="/person/:id"
+            element={
+              <ProtectedRute>
+                <ActorDetail />
+              </ProtectedRute>
+            }
+            />
+          <Route path="/login" element={<Login />} />
+          <Route
+            path="/favorites"
+            element={
+              <ProtectedRute>
+                <FavoritePage />
+              </ProtectedRute>
+            }
+            />
+        </Routes>
           </main>
         </div>
       </AuthProvider>
